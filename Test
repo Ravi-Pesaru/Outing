@@ -1,0 +1,71 @@
+// SPDX-License-Identifier: MIT
+pragma solidity >=0.7.0 <0.9.0;
+import "hardhat/console.sol";
+contract Outing
+{
+//Class Variables
+string NRI_Sponsorship;
+string Sunny_Coming_to_india;
+string Bunty_Coming_to_india;
+bool  Count_me_in;
+string public Outing_Status;
+
+constructor() public { 
+       
+	NRI_Sponsorship = "No";
+	Sunny_Coming_to_india = "No";
+	Bunty_Coming_to_india = "No";
+	Count_me_in = false;
+}
+
+
+function Set_NRI_Sponsorship(string memory temp_s) public returns(string memory)
+    {
+        NRI_Sponsorship = temp_s;
+        string memory s1 = "yes";
+        if((keccak256(abi.encodePacked(NRI_Sponsorship)) == keccak256(abi.encodePacked(s1))))
+        { 
+        Count_me_in = true;
+
+        }
+        return(NRI_Sponsorship);
+    }
+
+ function Set_Sunny_Coming_to_india(string memory temp_s) public returns(string memory)
+    {
+        Sunny_Coming_to_india = temp_s;
+        return(Sunny_Coming_to_india);
+    }
+
+
+     function Set_Bunty_Coming_to_india(string memory temp_s) public returns(string memory)
+    {
+        Bunty_Coming_to_india = temp_s;
+        return(Bunty_Coming_to_india);
+    }
+
+    function My_vote() public returns(string memory vote )
+  {
+      string memory s1 ="yes";
+       string memory s2 ="yes";
+
+       if(Count_me_in)
+       {
+
+       if((keccak256(abi.encodePacked(Bunty_Coming_to_india)) == keccak256(abi.encodePacked(s1))))
+      {
+          if((keccak256(abi.encodePacked(Bunty_Coming_to_india)) == keccak256(abi.encodePacked(s2))))
+
+           {
+                 Outing_Status = "Coming to the outing";
+            }
+	  	       
+    	
+      }
+      else {Outing_Status = "Sorry, Not Coming to the outing";}
+       }
+
+       return(Outing_Status);
+}
+
+}
